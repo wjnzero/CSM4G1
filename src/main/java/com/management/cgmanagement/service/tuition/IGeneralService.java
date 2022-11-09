@@ -1,4 +1,4 @@
-package com.management.cgmanagement.service;
+package com.management.cgmanagement.service.tuition;
 
 import java.util.Optional;
 

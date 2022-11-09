@@ -1,14 +1,15 @@
-package com.management.cgmanagement.service;
+package com.management.cgmanagement.service.tuition;
 
 import com.management.cgmanagement.model.Tuition;
 import com.management.cgmanagement.repository.ITuitionRepository;
+import com.management.cgmanagement.service.tuition.ITuitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class TuitionService implements ITuitionService{
+public class TuitionService implements ITuitionService {
 
     @Autowired
     private ITuitionRepository tuitionRepository;
