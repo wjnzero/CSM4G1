@@ -15,6 +15,7 @@ public class Course {
     @JoinColumn(name = "user_id")
     private User user;
 
+
     public Course() {
     }
 
