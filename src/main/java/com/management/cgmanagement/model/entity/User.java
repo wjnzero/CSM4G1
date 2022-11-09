@@ -1,7 +1,6 @@
 package com.management.cgmanagement.model.entity;
 
-import com.management.cgmanagement.model.entity.Role;
-import com.management.cgmanagement.model.entity.Status;
+import com.management.cgmanagement.model.DTO.Role;
 
 import javax.persistence.*;
 import java.util.Date;
