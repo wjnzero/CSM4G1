@@ -1,5 +1,4 @@
 package com.management.cgmanagement.model;
 
-
-public class User {
+public class Mark {
 }
