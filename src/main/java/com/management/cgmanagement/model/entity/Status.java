@@ -1,4 +1,4 @@
-package com.management.cgmanagement.model;
+package com.management.cgmanagement.model.entity;
 
 import javax.persistence.*;
 import java.util.List;

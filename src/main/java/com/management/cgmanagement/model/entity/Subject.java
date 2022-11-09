@@ -1,28 +1,27 @@
-package com.management.cgmanagement.model;
-
+package com.management.cgmanagement.model.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="course")
-public class Course {
+@Table(name="subject")
+public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
     private String name;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "course_id")
+    private Course course;
 
-    public Course() {
+    public Subject() {
     }
 
-    public Course(Long id, String name, User user) {
+    public Subject(Long id, String name, Course course) {
         this.id = id;
         this.name = name;
-        this.user = user;
+        this.course = course;
     }
 
     public Long getId() {
@@ -41,11 +40,11 @@ public class Course {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }
