@@ -1,6 +1,8 @@
 package com.management.cgmanagement.model.entity;
 
-import com.management.cgmanagement.model.DTO.Role;
+import com.management.cgmanagement.model.dto.Role;
+import com.management.cgmanagement.model.entity.ClassRoom;
+import com.management.cgmanagement.model.entity.Status;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,8 +18,6 @@ public class User {
 
     private String fullName;
     private String email;
-
-
     private String password;
     private String phoneNumber;
     private String Address;
