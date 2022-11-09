@@ -1,14 +1,10 @@
-package com.management.cgmanagement.model.DTO;
+package com.management.cgmanagement.model.entity;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Role implements GrantedAuthority {
+@Table(name = "role")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,10 +33,5 @@ public class Role implements GrantedAuthority {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String getAuthority() {
-        return name;
     }
 }

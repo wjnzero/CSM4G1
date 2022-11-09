@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -14,7 +14,7 @@ public class Story {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotEmpty
-    private LocalDate date;
+    private Date date;
     @NotEmpty
     private String content;
     @ManyToOne
@@ -24,17 +24,17 @@ public class Story {
     public Story() {
     }
 
-    public Story(long id, LocalDate date, String content, ClassRoom aClass) {
+    public Story(long id, Date date, String content, ClassRoom classRoom) {
         this.id = id;
         this.date = date;
         this.content = content;
-        this.classRoom = aClass;
+        this.classRoom = classRoom;
     }
 
-    public Story(LocalDate date, String content, ClassRoom aClass) {
+    public Story(Date date, String content, ClassRoom classRoom) {
         this.date = date;
         this.content = content;
-        this.classRoom = aClass;
+        this.classRoom = classRoom;
     }
 
     public long getId() {
@@ -45,11 +45,11 @@ public class Story {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -61,11 +61,11 @@ public class Story {
         this.content = content;
     }
 
-    public ClassRoom getaClass() {
+    public ClassRoom getClassRoom() {
         return classRoom;
     }
 
-    public void setaClass(ClassRoom aClass) {
-        this.classRoom = aClass;
+    public void setClassRoom(ClassRoom classRoom) {
+        this.classRoom = classRoom;
     }
 }
