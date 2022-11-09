@@ -1,5 +1,6 @@
 package com.management.cgmanagement.service.tuition;
 
+import com.management.cgmanagement.model.entity.Subject;
 import com.management.cgmanagement.model.entity.Tuition;
 import com.management.cgmanagement.repository.ITuitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,8 @@ public class TuitionService implements ITuitionService {
     }
 
     @Override
-    public void save(Tuition tuition) {
-        tuitionRepository.save(tuition);
-
+    public Tuition save(Tuition tuition) {
+        return tuitionRepository.save(tuition);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.management.cgmanagement.model.dto;
+package com.management.cgmanagement.model.DTO;
 
 import javax.persistence.*;
 
