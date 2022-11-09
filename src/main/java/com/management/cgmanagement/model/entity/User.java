@@ -28,15 +28,22 @@ public class User {
     @JoinColumn(name = "status_id")
     private Status status;
 
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roleSet;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_class", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "classRoom_id")})
+    private Set<ClassRoom> classRooms;
+
     public User() {
     }
 
-    public User(String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Set<Role> roleSet) {
+    public User(String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Set<Role> roleSet, Set<ClassRoom> classRooms) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
@@ -46,9 +53,10 @@ public class User {
         this.identity = identity;
         this.status = status;
         this.roleSet = roleSet;
+        this.classRooms=classRooms;
     }
 
-    public User(Long id, String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Set<Role> roleSet) {
+    public User(Long id, String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Set<Role> roleSet,Set<ClassRoom> classRooms) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -59,6 +67,7 @@ public class User {
         this.identity = identity;
         this.status = status;
         this.roleSet = roleSet;
+        this.classRooms=classRooms;
     }
 
     public Long getId() {
@@ -139,5 +148,13 @@ public class User {
 
     public void setRoleSet(Set<Role> roleSet) {
         this.roleSet = roleSet;
+    }
+
+    public Set<ClassRoom> getClassRooms() {
+        return classRooms;
+    }
+
+    public void setClassRooms(Set<ClassRoom> classRooms) {
+        this.classRooms = classRooms;
     }
 }
