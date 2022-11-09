@@ -1,5 +1,6 @@
 package com.management.cgmanagement.model.entity;
 
+import com.management.cgmanagement.model.entity.ClassRoom;
 import lombok.Data;
 
 import javax.persistence.*;

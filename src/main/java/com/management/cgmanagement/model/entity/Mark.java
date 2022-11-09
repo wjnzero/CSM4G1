@@ -10,18 +10,22 @@ public class Mark {
     private Long id;
     private Double lecture;
     private Double tutorial;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+@JoinColumn(name = "course_id")
+private Course course;
     public Mark() {
     }
 
-    public Mark(Long id, Double lecture, Double tutorial, User user) {
+    public Mark(Long id, Double lecture, Double tutorial, User user, Course course) {
         this.id = id;
         this.lecture = lecture;
         this.tutorial = tutorial;
         this.user = user;
+        this.course=course;
     }
 
     public Long getId() {
@@ -54,5 +58,13 @@ public class Mark {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

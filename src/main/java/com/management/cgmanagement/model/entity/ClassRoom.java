@@ -15,9 +15,9 @@ public class ClassRoom {
     private String nameClass;
     @NotEmpty
     private String numberStudent;
-    @ManyToOne
+   @ManyToOne
     @JoinColumn(name = "user_id")
-    private  User user;
+    private User user;
 
 
     public ClassRoom() {
