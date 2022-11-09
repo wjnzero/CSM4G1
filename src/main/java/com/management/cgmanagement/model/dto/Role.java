@@ -1,4 +1,4 @@
-package com.management.cgmanagement.model;
+package com.management.cgmanagement.model.dto;
 
 import org.springframework.security.core.GrantedAuthority;
 

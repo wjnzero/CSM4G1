@@ -1,4 +1,6 @@
-package com.management.cgmanagement.model;
+package com.management.cgmanagement.model.dto;
+
+import com.management.cgmanagement.model.dto.Role;
 
 import javax.persistence.*;
 
@@ -7,7 +9,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String username;
     private String password;
 
