@@ -1,6 +1,5 @@
 package com.management.cgmanagement.controller.tuition;
 
-import com.management.cgmanagement.model.entity.Tuition;
 import com.management.cgmanagement.model.entity.User;
 import com.management.cgmanagement.service.tuition.ITuitionService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,42 +1,45 @@
 package com.management.cgmanagement.service.mark;
 
 import com.management.cgmanagement.model.entity.Mark;
-import com.management.cgmanagement.repository.MarkRepo;
-import com.management.cgmanagement.repository.UserRepo;
+import com.management.cgmanagement.repository.MarkRepository;
+import com.management.cgmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MarkService implements IMarkService{
 
     @Autowired
-    MarkRepo markRepo;
+    MarkRepository markRepository;
     @Autowired
-    UserRepo userRepo;
+    UserRepository userRepository;
 
     @Override
     public Iterable<Mark> findAll() {
-        return markRepo.findAll();
+        return markRepository.findAll();
     }
 
     @Override
     public Optional<Mark> findById(Long id) {
-        return markRepo.findById(id);
+        return markRepository.findById(id);
     }
 
     @Override
     public Mark save(Mark mark) {
-        return markRepo.save(mark);
+        return markRepository.save(mark);
     }
 
     @Override
     public void remove(Long id) {
-        markRepo.deleteById(id);
+        markRepository.deleteById(id);
     }
-//    public List<Mark> getMark(Long id){
-//        return userRepo.findById(id).get().get
-//    }
+    public Mark getMark(Long id){
+        return userRepository.findById(id).get().getMark();
+    }
+
+
 
 //    @Override
 //    public Optional<Mark> findMarkByLecture(Double lecture) {
