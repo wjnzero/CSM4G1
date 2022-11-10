@@ -1,8 +1,6 @@
 package com.management.cgmanagement.controller.login;
 
-import com.management.cgmanagement.model.dto.AppRole;
 import com.management.cgmanagement.model.dto.JwtResponse;
-import com.management.cgmanagement.model.dto.UserPrinciple;
 import com.management.cgmanagement.model.entity.Role;
 import com.management.cgmanagement.model.entity.User;
 import com.management.cgmanagement.service.jwt.TokenService;
@@ -13,21 +11,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @RestController
 //@CrossOrigin("*")
-public class Login {
+public class Connect {
     @Autowired
     TokenService tokenService;
 
