@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,6 +16,15 @@ import java.util.Optional;
 public class MarkController {
     @Autowired
     MarkService markService;
+
+    @GetMapping
+    public ResponseEntity<Iterable<Mark>> findAllMark(){
+        List<Mark> courses = (List<Mark>)markService.findAll();
+        if (courses.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(courses,HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<Mark> save(@RequestBody Mark mark){
