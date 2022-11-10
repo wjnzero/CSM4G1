@@ -10,8 +10,8 @@ public class Tuition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
+    private Double debt;
     private Double completedFee;
-    @NotEmpty
     private Double totalFee;
     @OneToOne
     @JoinColumn(name = "course_id")
@@ -21,9 +21,9 @@ public class Tuition {
     }
 
 
-    public Tuition(Long id, Double completedFee,Double totalFee, Course course) {
+    public Tuition(Long id,Double debt, Double completedFee,Double totalFee, Course course) {
         this.id = id;
-
+        this.debt = debt;
         this.completedFee = completedFee;
         this.totalFee= totalFee;
         this.course=course;
@@ -37,6 +37,13 @@ public class Tuition {
         this.id = id;
     }
 
+    public Double getDebt() {
+        return debt;
+    }
+
+    public void setDebt(Double debt) {
+        this.debt = debt;
+    }
 
     public Double getCompletedFee() {
         return completedFee;

@@ -1,7 +1,5 @@
 package com.management.cgmanagement.model.entity;
 
-import com.management.cgmanagement.model.entity.Role;
-import com.management.cgmanagement.model.entity.Status;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,6 +25,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
+    @ManyToOne
+    @JoinColumn(name = "mark_id")
+    private Mark mark;
 
 
 
@@ -43,7 +44,7 @@ public class User {
     public User() {
     }
 
-    public User(String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Set<Role> roleSet, Set<ClassRoom> classRooms) {
+    public User(String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Mark mark, Set<Role> roleSet, Set<ClassRoom> classRooms) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
@@ -52,11 +53,12 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.identity = identity;
         this.status = status;
+        this.mark = mark;
         this.roleSet = roleSet;
-        this.classRooms=classRooms;
+        this.classRooms = classRooms;
     }
 
-    public User(Long id, String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Set<Role> roleSet,Set<ClassRoom> classRooms) {
+    public User(Long id, String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Mark mark, Set<Role> roleSet, Set<ClassRoom> classRooms) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -66,8 +68,12 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.identity = identity;
         this.status = status;
+        this.mark = mark;
         this.roleSet = roleSet;
-        this.classRooms=classRooms;
+        this.classRooms = classRooms;
+    }
+
+    public User(String email, String password, Set<Role> roleSet) {
     }
 
     public Long getId() {
@@ -140,6 +146,14 @@ public class User {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Mark getMark() {
+        return mark;
+    }
+
+    public void setMark(Mark mark) {
+        this.mark = mark;
     }
 
     public Set<Role> getRoleSet() {

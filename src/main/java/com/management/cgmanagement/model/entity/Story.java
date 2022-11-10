@@ -1,9 +1,11 @@
 package com.management.cgmanagement.model.entity;
 
+import com.management.cgmanagement.model.entity.ClassRoom;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+
 import java.util.Date;
 
 @Entity
@@ -26,12 +28,6 @@ public class Story {
 
     public Story(long id, Date date, String content, ClassRoom classRoom) {
         this.id = id;
-        this.date = date;
-        this.content = content;
-        this.classRoom = classRoom;
-    }
-
-    public Story(Date date, String content, ClassRoom classRoom) {
         this.date = date;
         this.content = content;
         this.classRoom = classRoom;
@@ -68,4 +64,13 @@ public class Story {
     public void setClassRoom(ClassRoom classRoom) {
         this.classRoom = classRoom;
     }
+
+    public Story(Date date, String content, ClassRoom classRoom) {
+        this.date = date;
+        this.content = content;
+        this.classRoom = classRoom;
+
+    }
 }
+
+
