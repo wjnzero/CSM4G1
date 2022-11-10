@@ -34,4 +34,5 @@ public class TuitionService implements ITuitionService {
     public void remove(Long id) {
         tuitionRepository.deleteById(id);
     }
+
 }
