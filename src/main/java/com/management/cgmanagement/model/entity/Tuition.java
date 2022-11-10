@@ -1,7 +1,5 @@
 package com.management.cgmanagement.model.entity;
 
-import com.management.cgmanagement.model.entity.Course;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -12,7 +10,9 @@ public class Tuition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
-    private String status;
+    private Double completedFee;
+    @NotEmpty
+    private Double totalFee;
     @OneToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -20,9 +20,12 @@ public class Tuition {
     public Tuition() {
     }
 
-    public Tuition(Long id, String status, Course course) {
+
+    public Tuition(Long id, Double completedFee,Double totalFee, Course course) {
         this.id = id;
-        this.status = status;
+
+        this.completedFee = completedFee;
+        this.totalFee= totalFee;
         this.course=course;
     }
 
@@ -34,12 +37,21 @@ public class Tuition {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+
+    public Double getCompletedFee() {
+        return completedFee;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCompletedFee(Double completedFee) {
+        this.completedFee = completedFee;
+    }
+
+    public Double getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(Double totalFee) {
+        this.totalFee = totalFee;
     }
 
     public Course getCourse() {

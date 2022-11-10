@@ -74,6 +74,9 @@ public class User {
         this.classRooms = classRooms;
     }
 
+    public User(String email, String password, Set<Role> roleSet) {
+    }
+
     public Long getId() {
         return id;
     }
