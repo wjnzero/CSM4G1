@@ -26,9 +26,7 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
-    @ManyToOne
-    @JoinColumn(name = "mark_id")
-    private Mark mark;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")},
@@ -43,21 +41,7 @@ public class User {
     public User() {
     }
 
-    public User(String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Mark mark, Set<Role> roleSet, Set<ClassRoom> classRooms) {
-        this.fullName = fullName;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        Address = address;
-        this.dateOfBirth = dateOfBirth;
-        this.identity = identity;
-        this.status = status;
-        this.mark = mark;
-        this.roleSet = roleSet;
-        this.classRooms = classRooms;
-    }
-
-    public User(Long id, String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Mark mark, Set<Role> roleSet, Set<ClassRoom> classRooms) {
+    public User(Long id, String fullName, String email, String password, String phoneNumber, String address, Date dateOfBirth, String identity, Status status, Set<Role> roleSet, Set<ClassRoom> classRooms) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -67,7 +51,6 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.identity = identity;
         this.status = status;
-        this.mark = mark;
         this.roleSet = roleSet;
         this.classRooms = classRooms;
     }
@@ -161,13 +144,5 @@ public class User {
 
     public void setClassRooms(Set<ClassRoom> classRooms) {
         this.classRooms = classRooms;
-    }
-
-    public Mark getMark() {
-        return mark;
-    }
-
-    public void setMark(Mark mark) {
-        this.mark = mark;
     }
 }
