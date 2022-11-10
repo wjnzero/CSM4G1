@@ -10,8 +10,8 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(targetEntity = User.class)
-    private List<User> users;
+//    @OneToMany(targetEntity = User.class)
+//    private List<User> users;
     public  Status(){
 
     }
@@ -36,11 +36,11 @@ public class Status {
         this.name = name;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+//    public List<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
 }
