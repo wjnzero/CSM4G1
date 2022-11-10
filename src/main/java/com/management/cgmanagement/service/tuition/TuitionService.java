@@ -1,8 +1,7 @@
 package com.management.cgmanagement.service.tuition;
 
-
+import com.management.cgmanagement.model.entity.Tuition;
 import com.management.cgmanagement.repository.TuitionRepository;
->>>>>>> b638dcad089db421fb536fff2657b3870abd0c61
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +34,5 @@ public class TuitionService implements ITuitionService {
     public void remove(Long id) {
         tuitionRepository.deleteById(id);
     }
+
 }
