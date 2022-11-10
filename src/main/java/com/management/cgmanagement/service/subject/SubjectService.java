@@ -4,10 +4,12 @@ import com.management.cgmanagement.model.entity.Subject;
 import com.management.cgmanagement.repository.SubjectRepository;
 import com.management.cgmanagement.service.subject.ISubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class SubjectService implements ISubjectService {
     @Autowired
     SubjectRepository subjectRepository;
