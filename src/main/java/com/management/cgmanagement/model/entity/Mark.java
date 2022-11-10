@@ -15,8 +15,9 @@ public class Mark {
     private User user;
 
     @ManyToOne
-@JoinColumn(name = "course_id")
-private Course course;
+    @JoinColumn(name = "course_id")
+    private Course course;
+
     public Mark() {
     }
 
@@ -25,7 +26,7 @@ private Course course;
         this.lecture = lecture;
         this.tutorial = tutorial;
         this.user = user;
-        this.course=course;
+        this.course = course;
     }
 
     public Long getId() {
