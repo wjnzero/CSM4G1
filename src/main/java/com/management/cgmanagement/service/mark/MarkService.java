@@ -4,10 +4,12 @@ import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.repository.MarkRepo;
 import com.management.cgmanagement.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MarkService implements IMarkService{
 
     @Autowired
@@ -34,9 +36,11 @@ public class MarkService implements IMarkService{
     public void remove(Long id) {
         markRepo.deleteById(id);
     }
-//    public List<Mark> getMark(Long id){
-//        return userRepo.findById(id).get().get
-//    }
+    public Mark getMark(Long id){
+        return userRepo.findById(id).get().getMark();
+    }
+
+
 
 //    @Override
 //    public Optional<Mark> findMarkByLecture(Double lecture) {

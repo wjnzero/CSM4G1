@@ -1,8 +1,6 @@
 package com.management.cgmanagement.model.entity;
 
 import com.management.cgmanagement.model.dto.Role;
-import com.management.cgmanagement.model.entity.ClassRoom;
-import com.management.cgmanagement.model.entity.Status;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,12 +25,14 @@ public class User {
     @JoinColumn(name = "status_id")
     private Status status;
 
-
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roleSet;
+
+    @ManyToOne
+    @JoinColumn(name = "mark_id")
+    private Mark mark;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_class", joinColumns = {@JoinColumn(name = "user_id")},
@@ -155,5 +155,13 @@ public class User {
 
     public void setClassRooms(Set<ClassRoom> classRooms) {
         this.classRooms = classRooms;
+    }
+
+    public Mark getMark() {
+        return mark;
+    }
+
+    public void setMark(Mark mark) {
+        this.mark = mark;
     }
 }
