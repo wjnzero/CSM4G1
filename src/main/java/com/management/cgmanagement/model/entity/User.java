@@ -1,6 +1,8 @@
 package com.management.cgmanagement.model.entity;
 
+
 import com.management.cgmanagement.model.dto.Role;
+
 
 import javax.persistence.*;
 import java.util.Date;
@@ -72,6 +74,9 @@ public class User {
         this.mark = mark;
         this.roleSet = roleSet;
         this.classRooms = classRooms;
+    }
+
+    public User(String email, String password, Set<Role> roleSet) {
     }
 
     public Long getId() {
