@@ -16,7 +16,7 @@ import java.util.Optional;
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<Iterable<Subject>> findAllSubject(){
         List<Subject> subject = (List<Subject>)subjectService.findAll();
         if (subject.isEmpty()){
@@ -33,12 +33,12 @@ public class SubjectController {
         return new ResponseEntity<>(subjects.get(),HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<Subject> save(@RequestBody Subject subject){
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Subject> updateSubject(@PathVariable Long id,@RequestBody Subject subject){
         Optional<Subject> subjectOptional = subjectService.findById(id);
         if (!subjectOptional.isPresent()) {
@@ -48,7 +48,7 @@ public class SubjectController {
         return new ResponseEntity<>(subjectService.save(subject),HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Subject> deleteSubject(@PathVariable Long id){
         Optional<Subject> subjectOptional = subjectService.findById(id);
         if (!subjectOptional.isPresent()){
