@@ -1,4 +1,4 @@
-package com.management.cgmanagement.controller;
+package com.management.cgmanagement.controller.mark;
 
 import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.service.mark.MarkService;

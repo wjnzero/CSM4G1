@@ -4,17 +4,17 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "role")
-public class Role {
+public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    public Role() {
+    public AppRole() {
     }
 
-    public Role(Long id, String name) {
+    public AppRole(Long id, String name) {
         this.id = id;
         this.name = name;
     }

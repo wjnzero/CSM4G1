@@ -1,21 +1,21 @@
 package com.management.cgmanagement.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "statuses")
-public class Status {
+@Table(name = "role")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
-    public  Status(){
-
+    public Role() {
     }
 
-    public Status(String name) {
+    public Role(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -34,6 +34,4 @@ public class Status {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }

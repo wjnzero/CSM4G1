@@ -3,6 +3,9 @@ package com.management.cgmanagement.service.user;
 import com.management.cgmanagement.model.entity.User;
 import com.management.cgmanagement.service.GenericService;
 
-public interface IUserService extends GenericService<User> {
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
+public interface IUserService extends GenericService<User>, UserDetailsService {
+    User findByEmail(String email);
 }
