@@ -1,4 +1,4 @@
-package com.management.cgmanagement.controller;
+package com.management.cgmanagement.controller.subject;
 
 import com.management.cgmanagement.model.entity.Subject;
 import com.management.cgmanagement.service.subject.SubjectService;
