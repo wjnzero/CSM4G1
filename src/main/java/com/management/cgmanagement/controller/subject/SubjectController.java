@@ -1,4 +1,4 @@
-package com.management.cgmanagement.controller;
+package com.management.cgmanagement.controller.subject;
 
 import com.management.cgmanagement.model.entity.Subject;
 import com.management.cgmanagement.service.subject.SubjectService;
@@ -34,8 +34,8 @@ public class SubjectController {
     }
 
     @PostMapping
-    public ResponseEntity<Subject> save(@RequestBody Subject customer){
-        return new ResponseEntity<>(subjectService.save(customer), HttpStatus.CREATED);
+    public ResponseEntity<Subject> save(@RequestBody Subject subject){
+        return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
