@@ -2,6 +2,7 @@ package com.management.cgmanagement.model.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 @Table(name="subject")
@@ -14,6 +15,8 @@ public class Subject {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
+    @OneToMany
+    private List<Subject> subjectList;
 
     public Subject() {
     }
@@ -46,5 +49,9 @@ public class Subject {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public List<Subject> getSubject() {
+        return subjectList;
     }
 }
