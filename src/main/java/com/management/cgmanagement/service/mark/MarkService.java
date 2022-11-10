@@ -39,15 +39,9 @@ public class MarkService implements IMarkService{
         return userRepository.findById(id).get().getMark();
     }
 
-
-
 //    @Override
-//    public Optional<Mark> findMarkByLecture(Double lecture) {
-//        return markRepo.findMarkByLecture(lecture);
-//    }
+//    public Mark saveMark(Double lecture, Double tutorial, Long course_id, Long user_id) {
 //
-//    @Override
-//    public Optional<Mark> findMarkByTutorial(Double tutorial) {
-//        return markRepo.findMarkByTutorial(tutorial);
+//        return markRepository;
 //    }
 }
