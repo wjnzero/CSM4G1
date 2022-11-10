@@ -1,7 +1,11 @@
 package com.management.cgmanagement.controller.tuition;
 
 
+import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.model.entity.Tuition;
+import com.management.cgmanagement.model.entity.Tuition;
+import com.management.cgmanagement.model.entity.User;
+import com.management.cgmanagement.service.course.CourseService;
 import com.management.cgmanagement.service.tuition.TuitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,9 @@ import java.util.Optional;
 public class TuitionController {
     @Autowired
     private TuitionService tuitionService;
+@Autowired
+    private CourseService courseService;
+
     @GetMapping
     public ResponseEntity<Iterable<Tuition>> findAllTuition(){
         List<Tuition> tuition = (List<Tuition>)tuitionService.findAll();
@@ -34,11 +41,21 @@ public class TuitionController {
         return new ResponseEntity<>(tuitions.get(),HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Tuition> save(@RequestBody Tuition customer){
-        return new ResponseEntity<>(tuitionService.save(customer), HttpStatus.CREATED);
-    }
+    @PostMapping("/create")
+    public ResponseEntity<Tuition> save(@RequestBody Tuition tuition){
+        Tuition temp = new Tuition();
+        temp.setId(tuition.getId());
 
+        Long courseid = (tuition.getCourse()).getId();
+
+        Course course = courseService.findById(courseid).get();
+        temp.setCourse(course);
+        temp.setTotalFee(tuition.getTotalFee());
+        temp.setCompletedFee(tuition.getCompletedFee());
+
+
+        return new ResponseEntity<>(tuitionService.save(temp), HttpStatus.CREATED);
+    }
     @PutMapping("/{id}")
     public ResponseEntity<Tuition> updateTuition(@PathVariable Long id,@RequestBody Tuition tuition){
         Optional<Tuition> tuitionOptional = tuitionService.findById(id);

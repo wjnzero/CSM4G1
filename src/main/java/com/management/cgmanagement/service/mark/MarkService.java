@@ -35,19 +35,4 @@ public class MarkService implements IMarkService{
     public void remove(Long id) {
         markRepository.deleteById(id);
     }
-    public Mark getMark(Long id){
-        return userRepository.findById(id).get().getMark();
-    }
-
-
-
-//    @Override
-//    public Optional<Mark> findMarkByLecture(Double lecture) {
-//        return markRepo.findMarkByLecture(lecture);
-//    }
-//
-//    @Override
-//    public Optional<Mark> findMarkByTutorial(Double tutorial) {
-//        return markRepo.findMarkByTutorial(tutorial);
-//    }
 }

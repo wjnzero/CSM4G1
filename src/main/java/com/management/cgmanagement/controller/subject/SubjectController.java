@@ -16,7 +16,7 @@ import java.util.Optional;
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<Iterable<Subject>> findAllSubject(){
         List<Subject> subject = (List<Subject>)subjectService.findAll();
         if (subject.isEmpty()){
@@ -33,7 +33,7 @@ public class SubjectController {
         return new ResponseEntity<>(subjects.get(),HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Subject> save(@RequestBody Subject subject){
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }

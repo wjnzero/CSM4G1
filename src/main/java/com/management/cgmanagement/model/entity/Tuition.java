@@ -9,9 +9,9 @@ public class Tuition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
+//    @NotEmpty
     private Double completedFee;
-    @NotEmpty
+//    @NotEmpty
     private Double totalFee;
     @OneToOne
     @JoinColumn(name = "course_id")
