@@ -10,32 +10,29 @@ public class ClassRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
-    private String name;
-    @NotEmpty
     private String nameClass;
     @NotEmpty
-    private String numberStudent;
-   @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    private int numberStudent;
+
+
 
 
     public ClassRoom() {
     }
 
-    public ClassRoom(String name, String nameClass, String numberStudent, User user) {
-        this.name = name;
+    public ClassRoom( String nameClass, int numberStudent) {
+
         this.nameClass = nameClass;
         this.numberStudent = numberStudent;
-        this.user = user;
+
     }
 
-    public ClassRoom(Long id, String name, String nameClass, String numberStudent, User user) {
+    public ClassRoom(Long id, String nameClass, int numberStudent) {
         this.id = id;
-        this.name = name;
+
         this.nameClass = nameClass;
         this.numberStudent = numberStudent;
-        this.user = user;
+
     }
 
     public Long getId() {
@@ -46,14 +43,6 @@ public class ClassRoom {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getNameClass() {
         return nameClass;
     }
@@ -62,22 +51,12 @@ public class ClassRoom {
         this.nameClass = nameClass;
     }
 
-    public String getNumberStudent() {
+    public int getNumberStudent() {
         return numberStudent;
     }
 
-    public void setNumberStudent(String numberStudent) {
+    public void setNumberStudent(int numberStudent) {
         this.numberStudent = numberStudent;
     }
 
-<<<<<<< HEAD
-=======
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
->>>>>>> 8ad6fe6de735f6ccb9d79e78dadb4d6258092442
 }
