@@ -34,8 +34,8 @@ public class SubjectController {
     }
 
     @PostMapping
-    public ResponseEntity<Subject> save(@RequestBody Subject customer){
-        return new ResponseEntity<>(subjectService.save(customer), HttpStatus.CREATED);
+    public ResponseEntity<Subject> save(@RequestBody Subject subject){
+        return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

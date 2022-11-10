@@ -1,7 +1,5 @@
 package com.management.cgmanagement.model.entity;
 
-import com.management.cgmanagement.model.entity.Course;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
