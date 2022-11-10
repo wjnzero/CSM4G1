@@ -17,6 +17,8 @@ import java.util.Optional;
 public class TuitionController {
     @Autowired
     private TuitionService tuitionService;
+
+
     @GetMapping
     public ResponseEntity<Iterable<Tuition>> findAllTuition(){
         List<Tuition> tuition = (List<Tuition>)tuitionService.findAll();
@@ -34,9 +36,10 @@ public class TuitionController {
         return new ResponseEntity<>(tuitions.get(),HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Tuition> save(@RequestBody Tuition customer){
-        return new ResponseEntity<>(tuitionService.save(customer), HttpStatus.CREATED);
+    @PostMapping("/create")
+    public ResponseEntity<Tuition> save(@RequestBody Tuition tuition){
+
+        return new ResponseEntity<>(tuitionService.save(tuition), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
