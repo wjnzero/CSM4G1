@@ -12,11 +12,11 @@ public class Subject {
     private Long id;
     @NotEmpty
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
-    @OneToMany
-    private List<Subject> subjectList;
+//    @ManyToOne
+//    @JoinColumn(name = "course_id")
+//    private Course course;
+//    @OneToMany
+//    private List<Subject> subjectList;
 
     public Subject() {
     }
@@ -24,7 +24,7 @@ public class Subject {
     public Subject(Long id, String name, Course course) {
         this.id = id;
         this.name = name;
-        this.course = course;
+//        this.course = course;
     }
 
     public Long getId() {
@@ -43,11 +43,11 @@ public class Subject {
         this.name = name;
     }
 
-    public Course getCourse() {
-        return course;
-    }
+//    public Course getCourse() {
+//        return course;
+//    }
 
-    public void setCourse(Course course) {
-        this.course = course;
-    }
+//    public void setCourse(Course course) {
+//        this.course = course;
+//    }
     }

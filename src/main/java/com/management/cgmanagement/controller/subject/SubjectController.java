@@ -43,19 +43,9 @@ public class SubjectController {
     @PostMapping("/create")
     public ResponseEntity<Subject> save(@RequestBody Subject subject){
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
-//        Subject temp = new Subject();
-//        temp.setId(subject.getId());
-//
-//        Long courseid = (subject.getCourse()).getId();
-//
-//        Course course = courseService.findById(courseid).get();
-//        temp.setCourse(course);
-//
-//
-//        return new ResponseEntity<>(subjectService.save(temp), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Subject> updateSubject(@PathVariable Long id,@RequestBody Subject subject){
         Optional<Subject> subjectOptional = subjectService.findById(id);
         if (!subjectOptional.isPresent()) {
@@ -65,7 +55,7 @@ public class SubjectController {
         return new ResponseEntity<>(subjectService.save(subject),HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Subject> deleteSubject(@PathVariable Long id){
         Optional<Subject> subjectOptional = subjectService.findById(id);
         if (!subjectOptional.isPresent()){
