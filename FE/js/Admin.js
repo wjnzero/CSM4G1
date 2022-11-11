@@ -5,9 +5,9 @@ let rl = localStorage.getItem("role");
 if (tk == null){
     window.location.href = "Login.html"
 }
-else if (rl != "ROLE_ADMIN"){
-    window.location.href = "Login.html"
-}
+// else if (rl != "ROLE_ADMIN"){
+//     window.location.href = "Login.html"
+// }
 
 function logout(){
     localStorage.removeItem("token");
