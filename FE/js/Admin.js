@@ -81,9 +81,36 @@ function addNewUser() {
         //tên API
         url: "http://localhost:8080/register",
         //xử lý khi thành công
-        success: successHandler
-
+        // success: successHandler
     });
-
 }
+    function addNewCource() {
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
+        //lay du lieu
+        let firstName = $("#first-name").val();
+        let email = $("#email").val();
+        let phone = $("#phone").val();
+        let password = $("#password").val();
+        let role = $("#role").val();
+        let newCourse = {
+            fullName: firstName,
+            email: email,
+            phoneNumber: phone,
+            password: password,
+            identity: role,
+        };
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newCourse),
+            //tên API
+            url: "http://localhost:8080/register",
+            //xử lý khi thành công
+            // success: successHandler
+        });
+    }
 }
