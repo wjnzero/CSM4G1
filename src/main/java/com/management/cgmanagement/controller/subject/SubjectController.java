@@ -1,6 +1,10 @@
 package com.management.cgmanagement.controller.subject;
 
+import com.management.cgmanagement.model.entity.Course;
+import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.model.entity.Subject;
+import com.management.cgmanagement.model.entity.User;
+import com.management.cgmanagement.service.course.CourseService;
 import com.management.cgmanagement.service.subject.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +20,10 @@ import java.util.Optional;
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
-    @GetMapping()
+    @Autowired
+    CourseService courseService;
+
+    @GetMapping("/list")
     public ResponseEntity<Iterable<Subject>> findAllSubject(){
         List<Subject> subject = (List<Subject>)subjectService.findAll();
         if (subject.isEmpty()){
@@ -33,9 +40,19 @@ public class SubjectController {
         return new ResponseEntity<>(subjects.get(),HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Subject> save(@RequestBody Subject subject){
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
+//        Subject temp = new Subject();
+//        temp.setId(subject.getId());
+//
+//        Long courseid = (subject.getCourse()).getId();
+//
+//        Course course = courseService.findById(courseid).get();
+//        temp.setCourse(course);
+//
+//
+//        return new ResponseEntity<>(subjectService.save(temp), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

@@ -50,8 +50,4 @@ public class Subject {
     public void setCourse(Course course) {
         this.course = course;
     }
-
-    public List<Subject> getSubject() {
-        return subjectList;
     }
-}

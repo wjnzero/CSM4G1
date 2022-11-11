@@ -1,28 +1,92 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/layout::head">
-    <meta charset="UTF-8">
-    <title>Tạo mới môn học</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>List Subject</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        successHandler();
+
+        function addNewSubject() {
+            //lay du lieu
+            let subject = $('#subject').val();
+            let newSubject = {
+                subject: subject
+            };
+            // goi ajax
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                data: JSON.stringify(newSubject),
+                //tên API
+                url: "http://localhost:8080/subject/create",
+                //xử lý khi thành công
+                success: successHandler
+
+            });
+            //chặn sự kiện mặc định của thẻ
+            event.preventDefault();
+        }
+        function successHandler() {
+            $.ajax({
+                type: "GET",
+                //tên API
+                url: "http://localhost:8080/subject/list",
+                //xử lý khi thành công
+                success: function (data) {
+                    // hien thi danh sach o day
+                    let content = '    <tr>\n' +
+                        '        <td>Subject</td>\n' +
+                        '        <td>Delete</td>\n' +
+                        '    </tr>';
+                    for (let i = 0; i < data.length; i++) {
+                        content += getSubject(data[i]);
+                    }
+                    document.getElementById('subjectList').innerHTML = content;
+                }
+            });
+        }
+        function getSubject(subject) {
+            return `<tr><td >${subject.subject}</td>` +
+                `<td><a class="deleteSubject" onclick='deleteById($(this))' href="${subject.id}">Delete</a></td></tr>`;
+        }
+
+        function deleteById(a){
+            //lay du lieu
+            // let a = $(this);
+            let subjectId = a.attr("href");
+            // goi ajax
+            $.ajax({
+                type: "DELETE",
+                //tên API
+                url: `http://localhost:8080/subject/${subjectId}`,
+                //xử lý khi thành công
+                success: function (data) {
+                    successHandler();
+                    // a.parent().parent().remove();
+                }
+
+            });
+            //chặn sự kiện mặc định của thẻ
+            event.preventDefault();
+        }
+
+    </script>
 </head>
 <body>
-<p><h1 class="title">Tạo mới môn học</h1> </p>
-<p>
-    <a href="/subject">Quay lại danh sách môn học</a>
-</p>
-
-<!--/*@thymesVar id="subject" type=""*/-->
-<form th:action="@{/save}" th:object="${subject}" method="post">
-    <table id="alex" border="1">
+<form id="add-subject">
+    <table>
         <tr>
-            <td>Tên môn học: </td>
-            <td><input type="text" placeholder="Nhập tên môn học" th:field="*{name}"></td>
+            <td>subject:</td>
+            <td><input type="text" id="subject" placeholder="Nhập tên môn học"></td>
         </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Tạo"></td>
+        <td></td>
+        <td><input type="submit" value="Add" onclick="addNewSubject()"></td>
         </tr>
     </table>
 </form>
 </body>
-<footer th:replace="/layout :: footer"></footer>
 </html>
