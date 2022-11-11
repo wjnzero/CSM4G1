@@ -1,5 +1,6 @@
 package com.management.cgmanagement.service.mark;
 
+import com.management.cgmanagement.model.dto.IMark;
 import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.repository.MarkRepository;
 import com.management.cgmanagement.repository.UserRepository;
@@ -16,9 +17,14 @@ public class MarkService implements IMarkService{
     @Autowired
     UserRepository userRepository;
 
+//    @Override
+//    public Iterable<Mark> findAll() {
+//        return markRepository.findAll();
+//    }
+
     @Override
-    public Iterable<Mark> findAll() {
-        return markRepository.findAll();
+    public Iterable<IMark> getMarkNative() {
+        return markRepository.getMarkNative();
     }
 
     @Override
