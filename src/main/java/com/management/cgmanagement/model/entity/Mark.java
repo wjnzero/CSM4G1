@@ -79,7 +79,7 @@ public class Mark {
     }
 
     public Double gpa (Double lecture,Double tutorial){
-        Double GPA = lecture + tutorial;
+        Double GPA = (lecture + tutorial)/2;
         return GPA;
     }
 }
