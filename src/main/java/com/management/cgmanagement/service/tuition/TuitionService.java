@@ -1,5 +1,6 @@
 package com.management.cgmanagement.service.tuition;
 
+import com.management.cgmanagement.model.dto.ITuition;
 import com.management.cgmanagement.model.entity.Tuition;
 import com.management.cgmanagement.repository.TuitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ public class TuitionService implements ITuitionService {
     @Autowired
     private TuitionRepository tuitionRepository;
 
-    @Override
-    public Iterable<Tuition> findAll() {
-        return tuitionRepository.findAll();
-    }
+//    @Override
+//    public Iterable<Tuition> findAll() {
+//        return tuitionRepository.findAll();
+//    }
 
     @Override
     public Optional<Tuition> findById(Long id) {
@@ -46,5 +47,9 @@ public class TuitionService implements ITuitionService {
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.tuitionRepository.findAll(pageable);
+    }
+    @Override
+    public Iterable<ITuition> getTuitionNative() {
+        return tuitionRepository.getTuitionNative();
     }
 }

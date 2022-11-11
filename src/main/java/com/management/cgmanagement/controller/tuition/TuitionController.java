@@ -1,6 +1,8 @@
 package com.management.cgmanagement.controller.tuition;
 
 
+import com.management.cgmanagement.model.dto.IMark;
+import com.management.cgmanagement.model.dto.ITuition;
 import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.model.entity.Tuition;
 import com.management.cgmanagement.model.entity.Tuition;
@@ -27,12 +29,18 @@ public class TuitionController {
     private CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Tuition>> findAllTuition(){
-        List<Tuition> tuition = (List<Tuition>)tuitionService.findAll();
-        if (tuition.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Iterable<ITuition>> findAllTuition(){
+        Iterable<ITuition> tuitions = null;
+        try {
+            tuitions = tuitionService.getTuitionNative();
         }
-        return new ResponseEntity<>(tuition,HttpStatus.OK);
+        catch (Exception e){
+            e.printStackTrace();
+        }
+//        if (courses.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+        return new ResponseEntity<>(tuitions, HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<Tuition> findById(@PathVariable Long id){
@@ -54,6 +62,7 @@ public class TuitionController {
         temp.setCourse(course);
         temp.setTotalFee(tuition.getTotalFee());
         temp.setCompletedFee(tuition.getCompletedFee());
+        temp.setDebt(tuition.debt(tuition.getCompletedFee(), tuition.getTotalFee()));
 
 
         return new ResponseEntity<>(tuitionService.save(temp), HttpStatus.CREATED);
