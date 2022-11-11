@@ -1,18 +1,18 @@
 package com.management.cgmanagement.controller.mark;
 
+import com.management.cgmanagement.model.dto.IMark;
 import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.model.entity.User;
 import com.management.cgmanagement.service.course.CourseService;
+import com.management.cgmanagement.service.mark.IMarkService;
 import com.management.cgmanagement.service.mark.MarkService;
-import com.management.cgmanagement.service.user.IUserService;
 import com.management.cgmanagement.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,16 +28,16 @@ public class MarkController {
     @Autowired
     CourseService courseService;
 
-    @GetMapping
-    public ResponseEntity<Iterable<Mark>> findAllMark() {
-        List<Mark> courses = (List<Mark>) markService.findAll();
-        if (courses.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(courses, HttpStatus.OK);
+    @GetMapping("/findAll")
+    public ResponseEntity<Iterable<IMark>> findAllMark() {
+        Iterable<IMark> marks = markService.getMarkNative();
+//        if (courses.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+        return new ResponseEntity<>(marks, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Mark> save(@RequestBody Mark mark) {
         Mark temp = new Mark();
         temp.setId(mark.getId());
@@ -50,12 +50,14 @@ public class MarkController {
 
         Course course = courseService.findById(courseid).get();
         temp.setCourse(course);
+        temp.setLecture(mark.getLecture());
+        temp.setTutorial(mark.getTutorial());
 
 
         return new ResponseEntity<>(markService.save(temp), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/put/{id}")
     public ResponseEntity<Mark> updateCourse(@PathVariable Long id, @RequestBody Mark mark) {
         Optional<Mark> mark1 = markService.findById(id);
         if (!mark1.isPresent()) {
@@ -65,7 +67,7 @@ public class MarkController {
         return new ResponseEntity<>(markService.save(mark), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Mark> deleteCourse(@PathVariable Long id) {
         Optional<Mark> mark = markService.findById(id);
         if (!mark.isPresent()) {

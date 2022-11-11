@@ -5,17 +5,17 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.sql.Date;
 
-import java.util.Date;
 
 @Entity
 @Data
 @Table(name = "story")
 public class Story {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @NotEmpty
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+//    @NotEmpty
     private Date date;
     @NotEmpty
     private String content;
@@ -23,29 +23,40 @@ public class Story {
     @JoinColumn(name = "class_id")
     private ClassRoom classRoom;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+private User user;
     public Story() {
     }
 
-    public Story(long id, Date date, String content, ClassRoom classRoom) {
+    public Story(Long id, java.sql.Date  date, String content, ClassRoom classRoom, User user) {
+        this.id = id;
+        this.date = date;
+        this.content = content;
+        this.classRoom = classRoom;
+        this.user = user;
+    }
+
+    public Story(Long id,java.sql.Date  date, String content, ClassRoom classRoom) {
         this.id = id;
         this.date = date;
         this.content = content;
         this.classRoom = classRoom;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getDate() {
+    public java.sql.Date  getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate( java.sql.Date  date) {
         this.date = date;
     }
 
