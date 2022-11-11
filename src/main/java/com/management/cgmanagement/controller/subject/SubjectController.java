@@ -33,7 +33,7 @@ public class SubjectController {
         return new ResponseEntity<>(subjects.get(),HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Subject> save(@RequestBody Subject subject){
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }
