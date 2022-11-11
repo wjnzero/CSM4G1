@@ -10,6 +10,7 @@ public class Mark {
     private Long id;
     private Double lecture;
     private Double tutorial;
+    private Double GPA ;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -17,13 +18,22 @@ public class Mark {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    public Double getGPA() {
+        return GPA ;
+    }
+
+    public void setGPA(Double GPA) {
+        this.GPA = GPA;
+    }
+
+
     public Mark() {
     }
 
-    public Mark(Long id, Double lecture, Double tutorial, User user, Course course) {
-        this.id = id;
+    public Mark(Double lecture, Double tutorial, Double GPA, User user, Course course) {
         this.lecture = lecture;
         this.tutorial = tutorial;
+        this.GPA = GPA;
         this.user = user;
         this.course = course;
     }
@@ -66,5 +76,10 @@ public class Mark {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Double gpa (Double lecture,Double tutorial){
+        Double GPA = lecture + tutorial;
+        return GPA;
     }
 }

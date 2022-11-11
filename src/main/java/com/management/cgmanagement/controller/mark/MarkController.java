@@ -1,18 +1,18 @@
 package com.management.cgmanagement.controller.mark;
 
+import com.management.cgmanagement.model.dto.IMark;
 import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.model.entity.User;
 import com.management.cgmanagement.service.course.CourseService;
+import com.management.cgmanagement.service.mark.IMarkService;
 import com.management.cgmanagement.service.mark.MarkService;
-import com.management.cgmanagement.service.user.IUserService;
 import com.management.cgmanagement.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,12 +29,12 @@ public class MarkController {
     CourseService courseService;
 
     @GetMapping("/findAll")
-    public ResponseEntity<Iterable<Mark>> findAllMark() {
-        List<Mark> courses = (List<Mark>) markService.findAll();
-        if (courses.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(courses, HttpStatus.OK);
+    public ResponseEntity<Iterable<IMark>> findAllMark() {
+        Iterable<IMark> marks = markService.getMarkNative();
+//        if (courses.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+        return new ResponseEntity<>(marks, HttpStatus.OK);
     }
 
     @PostMapping("/create")
