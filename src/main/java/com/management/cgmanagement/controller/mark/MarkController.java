@@ -52,6 +52,7 @@ public class MarkController {
         temp.setCourse(course);
         temp.setLecture(mark.getLecture());
         temp.setTutorial(mark.getTutorial());
+        temp.setGPA(mark.gpa(mark.getLecture(), mark.getTutorial()));
 
 
         return new ResponseEntity<>(markService.save(temp), HttpStatus.CREATED);
