@@ -1,12 +1,11 @@
 function addNewSubject() {
-    //chặn sự kiện mặc định của thẻ
     event.preventDefault();
-    //lay du lieu
+    //Lấy dữ liệu
     let name = $("#name").val();
     let newSubject = {
         name: name
     };
-    // goi ajax
+    // Gọi Ajax
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -30,13 +29,12 @@ function successHandler() {
         success: function (data) {
             // hien thi danh sach o day
             let content = '    <tr>\n' +
-                '        <td>Subject</td>\n' +
-                '        <td>Delete</td>\n' +
+                '        <td>Danh sách môn học</td>\n' +
                 '    </tr>';
             for (let i = 0; i < data.length; i++) {
                 content += getSubject(data[i]);
             }
-            document.getElementById('list').innerHTML = content;
+            document.getElementById('subject').innerHTML = content;
         }
     });
 }
