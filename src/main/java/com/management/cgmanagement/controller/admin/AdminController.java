@@ -25,7 +25,14 @@ public class AdminController {
 
     @PostMapping("/create-course")
     public ResponseEntity<Course> register(@RequestBody Course course){
-        return new ResponseEntity<>(courseService.save(course), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(courseService.save(course), HttpStatus.OK);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
