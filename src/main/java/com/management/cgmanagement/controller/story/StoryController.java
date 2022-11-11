@@ -4,7 +4,7 @@ import com.management.cgmanagement.model.dto.IStory;
 import com.management.cgmanagement.model.entity.ClassRoom;
 import com.management.cgmanagement.model.entity.Story;
 import com.management.cgmanagement.model.entity.User;
-import com.management.cgmanagement.service.classroom.ClassRoomService;
+
 import com.management.cgmanagement.service.story.IStoryService;
 import com.management.cgmanagement.service.user.IUserService;
 import com.management.cgmanagement.service.user.UserService;
@@ -22,10 +22,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/stories")
 public class StoryController {
-    @Autowired
-    private UserService userService;
-@Autowired
-private ClassRoomService classRoomService;
+
 
     @Autowired
     private IStoryService storyService;
