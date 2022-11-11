@@ -54,7 +54,8 @@ public class Connect {
     public ResponseEntity<User> register(@RequestBody User user){
         Set<Role> roles = new HashSet<>();
         Role role = new Role();
-        role.setId(2L);
+        role.setId(Long.valueOf(user.getIdentity()));
+        user.setIdentity(null);
         roles.add(role);
         user.setRoleSet(roles);
         return new ResponseEntity<>(userService.save(user), HttpStatus.OK);

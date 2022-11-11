@@ -28,7 +28,7 @@ public class MarkController {
     @Autowired
     CourseService courseService;
 
-    @GetMapping
+    @GetMapping("/findAll")
     public ResponseEntity<Iterable<Mark>> findAllMark() {
         List<Mark> courses = (List<Mark>) markService.findAll();
         if (courses.isEmpty()) {
@@ -37,7 +37,7 @@ public class MarkController {
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Mark> save(@RequestBody Mark mark) {
         Mark temp = new Mark();
         temp.setId(mark.getId());
@@ -50,12 +50,14 @@ public class MarkController {
 
         Course course = courseService.findById(courseid).get();
         temp.setCourse(course);
+        temp.setLecture(mark.getLecture());
+        temp.setTutorial(mark.getTutorial());
 
 
         return new ResponseEntity<>(markService.save(temp), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/put/{id}")
     public ResponseEntity<Mark> updateCourse(@PathVariable Long id, @RequestBody Mark mark) {
         Optional<Mark> mark1 = markService.findById(id);
         if (!mark1.isPresent()) {
@@ -65,7 +67,7 @@ public class MarkController {
         return new ResponseEntity<>(markService.save(mark), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Mark> deleteCourse(@PathVariable Long id) {
         Optional<Mark> mark = markService.findById(id);
         if (!mark.isPresent()) {
