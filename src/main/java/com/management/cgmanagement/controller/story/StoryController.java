@@ -48,8 +48,7 @@ public class StoryController {
     public ResponseEntity<Story> saveStory(@RequestBody Story story) {
        Long millis=System.currentTimeMillis();
         story.setDate(new java.sql.Date(millis));
-        story.setUser(story.getUser());
-        story.setClassRoom(story.getClassRoom());
+
 
       try {
           storyService.save(story);
