@@ -18,7 +18,8 @@ import java.util.Optional;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/mark")
-public class MarkController {
+public class
+MarkController {
     @Autowired
     MarkService markService;
 
