@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Tuition Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Tuition Management System</h1>
+    <hr>
+    <h2>Save Tuition</h2>
+<!--    <form action="#" th:action="@{/saveTuition}" th:object="${tuition}"-->
+<!--          method="POST">-->
+<!--        <input type="text" th:field="*{firstName}"-->
+<!--               placeholder="Tuition First Name" class="form-control mb-4 col-4">-->
+
+<!--        <input type="text" th:field="*{lastName}"-->
+<!--               placeholder="Tuition Last Name" class="form-control mb-4 col-4">-->
+
+<!--        <input type="text" th:field="*{email}"-->
+<!--               placeholder="Tuition Email" class="form-control mb-4 col-4">-->
+
+<!--        <button type="submit" class="btn btn-info col-2"> Save Tuition</button>-->
+<!--    </form>-->
+
+    <hr>
+    <form id="add-tuition">
+        <table>
+            <tr>
+                <td>completedFee:</td>
+                <td><input type="text" id="completedFee" placeholder="completedFee" class="form-control mb-4 col-4"></td>
+            </tr>
+            <tr>
+                <td>totalFee:</td>
+                <td><input type="text" id="totalFee" placeholder="totalFee" class="form-control mb-4 col-4"></td>
+            </tr>
+            <tr>
+                <td>course:</td>
+                <td><input type="text" id="course_id" placeholder="course_id" class="form-control mb-4 col-4"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-info col-2" value="Add" onclick="addNewTuition()"></td>
+            </tr>
+        </table>
+    </form>
+<!--    <a th:href = "@{/tuition}"> Back to Tuition List</a>-->
+</div>
+</body>
+<body>
+<form id="add-smartphone">
+    <table>
+        <tr>
+            <td>Producer:</td>
+            <td><input type="text" id="producer" placeholder="producer"></td>
+        </tr>
+        <tr>
+            <td>Model:</td>
+            <td><input type="text" id="model" placeholder="model"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" id="price" placeholder="price"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
+        </tr>
+    </table>
+</form>
+
+<h1>Smartphone List</h1>
+<table id="smartphoneList">
+
+</table>
+</body>
+</html>

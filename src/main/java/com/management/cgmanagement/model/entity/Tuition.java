@@ -13,6 +13,7 @@ public class Tuition {
     private Double completedFee;
 //    @NotEmpty
     private Double totalFee;
+    private Double debt;
     @OneToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -60,5 +61,18 @@ public class Tuition {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Double getDebt() {
+        return debt;
+    }
+
+    public void setDebt(Double debt) {
+        this.debt = debt;
+    }
+
+    public Double debt (Double completedFee, Double totalFee){
+        Double DEBT = totalFee - completedFee;
+        return DEBT;
     }
 }
