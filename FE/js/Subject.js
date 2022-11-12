@@ -1,34 +1,35 @@
+//Hiển thị danh sách môn học
+successHandler()
 function successHandler() {
     $.ajax({
         type: "GET",
-        url: "/subject/list",
+        url: "http://localhost:8080/subject/list",
         success: function (data) {
             let content =
                 `<tr>
                         <td>Name</td>
-                        <td>Edit</td>
-                        <td>Delete</td>
+<!--                        <td>Edit</td>-->
+<!--                        <td>Delete</td>-->
                     </tr>`;
-            if (data == null) {
-                document.getElementById("subjectList").innerHTML = content;
-            } else {
                 for (let i = 0; i < data.length; i++) {
-                    content += getTeacher(data[i]);
+                    content += getSubject(data[i]);
                 }
                 document.getElementById("subjectList").innerHTML = content;
             }
-        }
     })
 }
+function getSubject(subject){
+    return `<tr><td>${subject.name}</td></tr>`
+}
 
+//Thêm môn học mới
 function displayFormCreate() {
     event.preventDefault();
-    // document.getElementById("form-register").reset()
-    document.getElementById("form-register-card").hidden = false;
+    document.getElementById("form-register").reset()
     document.getElementById("form-button-submit").onclick = function () {
-        addNewUser();
+        addNewSubject();
     }
-
+}
     function addNewSubject() {
         event.preventDefault();
         //Lấy dữ liệu
@@ -51,4 +52,3 @@ function displayFormCreate() {
 
         });
     }
-}
