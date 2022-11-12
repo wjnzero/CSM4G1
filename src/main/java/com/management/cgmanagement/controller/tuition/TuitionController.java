@@ -28,7 +28,7 @@ public class TuitionController {
 @Autowired
     private CourseService courseService;
 
-    @GetMapping
+    @GetMapping("/findall")
     public ResponseEntity<Iterable<ITuition>> findAllTuition(){
         Iterable<ITuition> tuitions = null;
         try {
