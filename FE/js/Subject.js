@@ -33,7 +33,7 @@ function displayFormCreate() {
     function addNewSubject() {
         event.preventDefault();
         //Lấy dữ liệu
-        let name = $("#name").val();
+        let name = $("#subject").val();
         let newSubject = {
             name: name
         };
@@ -48,7 +48,7 @@ function displayFormCreate() {
             //tên API
             url: "http://localhost:8080/subject/create",
             //xử lý khi thành công
-            success: successHandler
+            success: console.log("ok")
 
         });
     }
