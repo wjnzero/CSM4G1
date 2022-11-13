@@ -5,9 +5,18 @@ let rl = localStorage.getItem("role");
 if (tk == null){
     window.location.href = "Login.html"
 }
+if (rl !="ROLE_ADMIN"){
+    window.location.href = "AccessDenied.html"
+}
 // else if (rl != "ROLE_ADMIN"){
 //     window.location.href = "Login.html"
 // }
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+function back() {
+    document.getElementById("form-register-card").hidden = false;
+}
 function logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("role");
@@ -88,8 +97,18 @@ function displayFormCreateUser() {
                 //tên API
                 url: "http://localhost:8080/register",
                 //xử lý khi thành công
-                // success: successHandler
+                success: function () {
+                    let success = `<div class="alert alert-success alert-dismissible fade show" >
+              <strong>Success!</strong> Thêm mới tài khoản thành công. Quay lại trang chủ sau 3 giây
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+                    document.getElementById("sucess-register-user").innerHTML = success;
+                }
             });
+            sleep(3000).then(() => {
+                // Do something after the sleep!
+                window.location.reload();
+            });
+
         }
 
         function addNewCource() {
@@ -111,7 +130,16 @@ function displayFormCreateUser() {
                 //tên API
                 url: "http://localhost:8080/create-course",
                 //xử lý khi thành công
-                // success: successHandler
+                success: function () {
+                    let success = `<div class="alert alert-success alert-dismissible fade show" >
+              <strong>Success!</strong> Thêm mới khóa học thành công. Quay lại trang chủ sau 3 giây
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+                    document.getElementById("sucess-register-course").innerHTML = success;
+                }
+            });
+            sleep(3000).then(() => {
+                // Do something after the sleep!
+                window.location.reload();
             });
         }
 
