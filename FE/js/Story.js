@@ -1,4 +1,20 @@
-displayStory();
+
+function listStories(){
+    event.preventDefault();
+    document.getElementById("display-story").hidden=false;
+
+    displayStory();
+}
+const btn =document.getElementById("display")
+btn.addEventListener('click', () =>{
+    const form =document.getElementById('displayClassroom')
+    if(form.style.display==='none'){
+        form.style.display='block';
+    }else {
+        form.style.display='none';
+    }
+})
+
 function displayStory(){
     $.ajax({
         type:"GET",
