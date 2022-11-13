@@ -1,6 +1,7 @@
 package com.management.cgmanagement.controller.mark;
 
 import com.management.cgmanagement.model.dto.IMark;
+import com.management.cgmanagement.model.dto.IStudent;
 import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.model.entity.User;
@@ -31,10 +32,12 @@ public class MarkController {
     @GetMapping("/findAll")
     public ResponseEntity<Iterable<IMark>> findAllMark() {
         Iterable<IMark> marks = markService.getMarkNative();
-//        if (courses.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
         return new ResponseEntity<>(marks, HttpStatus.OK);
+    }
+    @GetMapping("/findStudent")
+    public ResponseEntity<Iterable<IStudent>> findAllStudent() {
+        Iterable<IStudent> students = markService.getStudent();
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
     @PostMapping("/create")
