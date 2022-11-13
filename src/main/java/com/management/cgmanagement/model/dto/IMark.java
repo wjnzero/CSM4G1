@@ -4,5 +4,6 @@ public interface IMark {
     Double getLecture();
     Double getTutorial();
     String getfull_name();
+    Double getgpa();
 
 }

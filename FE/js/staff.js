@@ -1,11 +1,11 @@
 
-function getAllStudent() {
+function getAllMark() {
     event.preventDefault();
     // document.getElementById("form-register").reset()
-    document.getElementById("student").hidden = false;
-    getStudent();
+    document.getElementById("mark").hidden = false;
+    getMark();
 }
-function getStudent() {
+function getMark() {
     $.ajax({
         type: "GET",
         //tên API
@@ -18,66 +18,48 @@ function getStudent() {
                 '       <td style="font-size: 30px" >Full Name</td>\n' +
                 '        <td style="font-size: 30px" >Lecture</td>\n' +
                 '        <td style="font-size: 30px" >Tutorial</td>\n' +
+                '        <td style="font-size: 30px" >GPA</td>\n' +
                 '</tr>';
             for (let i = 0; i < data.length; i++) {
-                content += getStudent1(data[i]);
+                content += getMark1(data[i]);
             }
-            document.getElementById("displayStudent").innerHTML = content;
+            document.getElementById("displayMark").innerHTML = content;
         }
     })
 }
-function getStudent1(student) {
-    return `<tr><td >${student.full_name}</td><td >${student.lecture}</td><td >${student.tutorial}</td>`
+function getMark1(mark) {
+    return `<tr><td >${mark.full_name}</td><td >${mark.lecture}</td><td >${mark.tutorial}</td><td >${mark.gpa}</td>`
 }
-
-
-
-
-
-
-//     successDisplayClass()
-//
-//     function successDisplayClass() {
-//         $.ajax({
-//             type: "GET",
-//             url: "http://localhost:8080/classes",
-//             success: function (data) {
-//                 console.log(data)
-//                 let content = '  <tr>\n' +
-//                     '       <td>nameClass</td>\n' +
-//                     '        <td>numberStudent</td>\n' +
-//                     '        <td>AddStory</td>\n' +
-//                     '</tr>';
-//                 for (let i = 0; i < data.length; i++) {
-//                     content += getClassRoom(data[i]);
-//                 }
-//                 document.getElementById("displayClassroom").innerHTML = content;
-//             }
-//         });
-//     }
-//
-//     function getClassRoom(classroom) {
-//         return `<tr><td >${classroom.nameClass}</td><td >${classroom.numberStudent}</td>` +
-//             `<td><button  type="submit" onclick='addStory()'>Add Story</button></td></tr>`
-//     }
-//
-//     function deleteById(element) {
-//         //lay du lieu
-//         let id = element.getAttribute("href");
-//         // goi ajax
-//         $.ajax({
-//             type: "DELETE",
-//             //tên API
-//             url: "http://localhost:8080/marl/delete" + id,
-//             //xử lý khi thành công
-//             success: function (data) {
-//                 console.log("Xoa thanh cong ");
-//                 showListTrainer();
-//             }
-//
-//         });
-//         //chặn sự kiện mặc định của thẻ
-//         event.preventDefault();
-//     }
-// }
-//
+function getStudent() {
+    event.preventDefault();
+    // document.getElementById("form-register").reset()
+    document.getElementById("mark").hidden = false;
+    getStudent1();
+}
+function getStudent1() {
+    $.ajax({
+        type: "GET",
+        //tên API
+        url: "http://localhost:8080/mark/findStudent",
+        //xử lý khi thành công
+        success: function (data) {
+            // hien thi danh sach o day
+            console.log(data)
+            let content = '  <tr>\n' +
+                '       <td style="font-size: 30px" >Full Name</td>\n' +
+                '        <td style="font-size: 30px" >Date Of Birth</td>\n' +
+                '        <td style="font-size: 30px" >Address</td>\n' +
+                '        <td style="font-size: 30px" >Email</td>\n' +
+                '        <td style="font-size: 30px" >Phone Number</td>\n' +
+                '        <td style="font-size: 30px" >Class</td>\n' +
+                '</tr>';
+            for (let i = 0; i < data.length; i++) {
+                content += getStudent2(data[i]);
+            }
+            document.getElementById("displayMark").innerHTML = content;
+        }
+    })
+}
+function getStudent2(student){
+    return `<tr><td >${student.full_name}</td><td >${student.date_of_birth}</td><td >${student.address}</td><td >${student.email}</td><td >${student.phone_number}</td><td >${student.name_class}</td>`
+}

@@ -8,6 +8,8 @@ import com.management.cgmanagement.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.internet.InternetAddress;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +34,9 @@ public class Connect {
     private AuthenticationManager authenticationManager;
     @Autowired
     IUserService userService;
+
+    @Autowired
+    JavaMailSender mailSender;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user){
@@ -58,6 +64,16 @@ public class Connect {
         user.setIdentity(null);
         roles.add(role);
         user.setRoleSet(roles);
+
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("spring.mail.username");
+        message.setTo(user.getEmail());
+        message.setSubject("Mật khẩu đăng nhập Codegum");
+        message.setText("Mật khẩu: "+user.getPassword());
+// sending message
+        mailSender.send(message);
+        System.out.println("Sending text done!");
         return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
     }
 

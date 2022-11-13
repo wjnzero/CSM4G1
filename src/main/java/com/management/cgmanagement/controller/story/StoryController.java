@@ -5,6 +5,7 @@ import com.management.cgmanagement.model.entity.ClassRoom;
 import com.management.cgmanagement.model.entity.Story;
 import com.management.cgmanagement.model.entity.User;
 
+import com.management.cgmanagement.service.classroom.IClassroomService;
 import com.management.cgmanagement.service.story.IStoryService;
 import com.management.cgmanagement.service.user.IUserService;
 import com.management.cgmanagement.service.user.UserService;
@@ -28,6 +29,8 @@ public class StoryController {
     private IStoryService storyService;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IClassroomService classroomService;
 
     @GetMapping
     public ResponseEntity<Iterable<IStory>> findAllStory() {
@@ -48,8 +51,10 @@ public class StoryController {
     public ResponseEntity<Story> saveStory(@RequestBody Story story) {
        Long millis=System.currentTimeMillis();
         story.setDate(new java.sql.Date(millis));
-
-
+//Long userID= (story.getUser().getId());
+//story.setUser(userService.findById(userID).get());
+//Long classID= story.getId();
+//story.setClassRoom(classroomService.findById(classID).get());
       try {
           storyService.save(story);
       }
