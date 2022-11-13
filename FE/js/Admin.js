@@ -8,7 +8,6 @@ if (tk == null){
 // else if (rl != "ROLE_ADMIN"){
 //     window.location.href = "Login.html"
 // }
-
 function logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("role");
@@ -47,70 +46,72 @@ function successHandler() {
     })
 }
 
-function displayFormCreate() {
+function displayFormCreateUser() {
     event.preventDefault();
     // document.getElementById("form-register").reset()
     document.getElementById("form-register-card").hidden = false;
     document.getElementById("form-button-submit").onclick = function () {
         addNewUser();
     }
-
-function addNewUser() {
-    //chặn sự kiện mặc định của thẻ
-    event.preventDefault();
-    //lay du lieu
-    let firstName = $("#first-name").val();
-    let email = $("#email").val();
-    let phone = $("#phone").val();
-    let password = $("#password").val();
-    let role = $("#role").val();
-    let newUser = {
-        fullName: firstName,
-        email: email,
-        phoneNumber: phone,
-        password: password,
-        identity: role,
-    };
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        type: "POST",
-        data: JSON.stringify(newUser),
-        //tên API
-        url: "http://localhost:8080/register",
-        //xử lý khi thành công
-        // success: successHandler
-    });
 }
-    function addNewCource() {
-        //chặn sự kiện mặc định của thẻ
+    function displayFormCreateCourse() {
         event.preventDefault();
-        //lay du lieu
-        let firstName = $("#first-name").val();
-        let email = $("#email").val();
-        let phone = $("#phone").val();
-        let password = $("#password").val();
-        let role = $("#role").val();
-        let newCourse = {
-            fullName: firstName,
-            email: email,
-            phoneNumber: phone,
-            password: password,
-            identity: role,
-        };
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "POST",
-            data: JSON.stringify(newCourse),
-            //tên API
-            url: "http://localhost:8080/register",
-            //xử lý khi thành công
-            // success: successHandler
-        });
+        // document.getElementById("form-register").reset()
+        document.getElementById("form-create-object-card").hidden = false;
+        document.getElementById("form-button-submit-course").onclick = function () {
+            addNewCource();
+        }
     }
-}
+        function addNewUser() {
+            //chặn sự kiện mặc định của thẻ
+            event.preventDefault();
+            //lay du lieu
+            let firstName = $("#first-name").val();
+            let email = $("#email").val();
+            let phone = $("#phone").val();
+            let password = $("#password").val();
+            let role = $("#role").val();
+            let newUser = {
+                fullName: firstName,
+                email: email,
+                phoneNumber: phone,
+                password: password,
+                identity: role,
+            };
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                data: JSON.stringify(newUser),
+                //tên API
+                url: "http://localhost:8080/register",
+                //xử lý khi thành công
+                // success: successHandler
+            });
+        }
+
+        function addNewCource() {
+            //chặn sự kiện mặc định của thẻ
+            event.preventDefault();
+            //lay du lieu
+            let name = $("#course-name").val();
+            let newCourse = {
+                id: null,
+                name : name,
+            };
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                data: JSON.stringify(newCourse),
+                //tên API
+                url: "http://localhost:8080/create-course",
+                //xử lý khi thành công
+                // success: successHandler
+            });
+        }
+

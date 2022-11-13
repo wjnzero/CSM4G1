@@ -1,10 +1,20 @@
-
+let tk = localStorage.getItem("token");
+if (tk == null){
+    window.location.href = "Login.html"
+}
 function displayClass(){
 
     event.preventDefault();
     document.getElementById("display-class").hidden=false;
 
     successDisplayClass();
+}
+function logout(){
+    event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    //goi API login
+    window.location.reload();
 }
 function  successDisplayClass(){
 

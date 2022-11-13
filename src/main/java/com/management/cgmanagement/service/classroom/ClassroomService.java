@@ -1,7 +1,6 @@
 package com.management.cgmanagement.service.classroom;
 
 import com.management.cgmanagement.model.entity.ClassRoom;
-import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.repository.ClassRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
