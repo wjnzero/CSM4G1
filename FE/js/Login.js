@@ -28,7 +28,7 @@ function Login() {
             }else if(data.roles[0].authority == "ROLE_STUDENT"){
                 location.href = "student.html"
             }else if(data.roles[0].authority == "ROLE_STAFF"){
-                location.href = "student.html"
+                location.href = "staff.html"
             }else {
                 alert("lon")
                 location.href = "Login.html"

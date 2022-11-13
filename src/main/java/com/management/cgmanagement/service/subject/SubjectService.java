@@ -32,7 +32,7 @@ public class SubjectService implements ISubjectService {
     public void remove(Long id) {
     subjectRepository.deleteById(id);
     }
-    public List<Subject> getSubject(Long id){
-        return subjectRepository.findById(id).get().getSubject();
+    public List<Subject> findByName(String name){
+        return subjectRepository.findByName(name);
     }
 }

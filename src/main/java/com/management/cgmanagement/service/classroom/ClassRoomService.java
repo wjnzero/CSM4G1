@@ -1,38 +1,34 @@
 package com.management.cgmanagement.service.classroom;
 
 import com.management.cgmanagement.model.entity.ClassRoom;
-
+import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.repository.ClassRoomRepository;
-
-import com.management.cgmanagement.repository.ClassRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
 @Service
-public class ClassRoomService implements  IClassRoomService{
+public class ClassroomService implements  IClassroomService{
     @Autowired
-    private ClassRepository classRepository;
+    ClassRoomRepository classroomRepository;
 
     @Override
     public Iterable<ClassRoom> findAll() {
-        return classRepository.findAll();
+        return classroomRepository.findAll();
     }
 
     @Override
     public Optional<ClassRoom> findById(Long id) {
-        return classRepository.findById(id);
+        return classroomRepository.findById(id);
     }
 
     @Override
     public ClassRoom save(ClassRoom classRoom) {
-        return classRepository.save(classRoom);
+        return classroomRepository.save(classRoom);
     }
 
     @Override
     public void remove(Long id) {
-        classRepository.deleteById(id);
+        classroomRepository.deleteById(id);
     }
 }
