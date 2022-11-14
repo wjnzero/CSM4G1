@@ -6,7 +6,6 @@ import com.management.cgmanagement.model.entity.Course;
 import com.management.cgmanagement.model.entity.Mark;
 import com.management.cgmanagement.model.entity.User;
 import com.management.cgmanagement.service.course.CourseService;
-import com.management.cgmanagement.service.mark.IMarkService;
 import com.management.cgmanagement.service.mark.MarkService;
 import com.management.cgmanagement.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,11 @@ MarkController {
     @GetMapping("/findAll")
     public ResponseEntity<Iterable<IMark>> findAllMark() {
         Iterable<IMark> marks = markService.getMarkNative();
+        return new ResponseEntity<>(marks, HttpStatus.OK);
+    }
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Iterable<IMark>> findMarkById(@PathVariable Long id) {
+        Iterable<IMark> marks = markService.getMark1Native(id);
         return new ResponseEntity<>(marks, HttpStatus.OK);
     }
     @GetMapping("/findStudent")

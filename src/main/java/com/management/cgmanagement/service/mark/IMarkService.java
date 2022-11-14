@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface IMarkService  {
 //    Mark saveMark(Double lecture, Double tutorial, Long course_id, Long user_id);
     Iterable<IMark> getMarkNative();
+    Iterable<IMark> getMark1Native(Long id);
     Iterable<IStudent> getStudent();
     Optional<Mark> findById(Long id);
     Mark save(Mark mark );

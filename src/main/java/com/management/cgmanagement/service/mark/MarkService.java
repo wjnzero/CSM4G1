@@ -29,6 +29,12 @@ public class MarkService implements IMarkService{
     }
 
     @Override
+    public Iterable<IMark> getMark1Native(Long id) {
+        return markRepository.getMark1Native(id);
+    }
+
+
+    @Override
     public Iterable<IStudent> getStudent() {
         return markRepository.getStudent();
     }

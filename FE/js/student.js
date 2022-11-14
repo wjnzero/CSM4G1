@@ -1,3 +1,4 @@
+
 function getAllStudent() {
     event.preventDefault();
     // document.getElementById("form-register").reset()
