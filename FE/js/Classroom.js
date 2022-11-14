@@ -1,7 +1,7 @@
-let tk = localStorage.getItem("token");
-if (tk == null){
-    window.location.href = "Login.html"
-}
+// let tk = localStorage.getItem("token");
+// if (tk == null){
+//     window.location.href = "Login.html"
+// }
 
 function displayClass(){
 

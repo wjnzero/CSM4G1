@@ -1,4 +1,16 @@
-
+function logout(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    //goi API login
+    window.location.href = "Login.html"
+}
+let tk = localStorage.getItem("token");
+let rl = localStorage.getItem("role");
+// let token = "";
+// let object = JSON.parse(rl);
+if (tk == null){
+    window.location.href = "Login.html"
+}
 function getAllMark() {
     event.preventDefault();
     // document.getElementById("form-register").reset()
