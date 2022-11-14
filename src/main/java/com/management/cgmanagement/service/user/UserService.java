@@ -49,4 +49,9 @@ public class UserService implements IUserService, UserDetailsService {
         User user = userRepository.findByEmail(email).get();
         return user;
     }
+
+    @Override
+    public Iterable<User> getUsersNative() {
+        return userRepository.getUserNative();
+    }
 }

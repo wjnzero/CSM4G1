@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('#example').DataTable();
+    getAllUser();
+} );
 let tk = localStorage.getItem("token");
 let rl = localStorage.getItem("role");
 // let token = "";
@@ -21,13 +25,25 @@ function back() {
 }
 
 function showChart() {
+    $.ajax({
+        type:"GET",
+        url :"http://localhost:8080/mark/findAll",
+        success:function (data){
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
+                console.log(data[i].full_name)
+                chartDataName.push(data[i].full_name)
+                chartMark.push((data[i].tutorial+data[i].lecture)/2)
+            };
+        }
+    });
     event.preventDefault();
     new Chart(document.querySelector('#barChart'), {
         type: 'bar',
         data: {
             labels: chartDataName,
             datasets: [{
-                label: 'Điểm',
+                label: 'Điểm TB',
                 data: chartMark,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -58,57 +74,78 @@ function showChart() {
             }
         }
     })
-    document.getElementById("chart-mark").hidden = false;
 }
 function logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     //goi API login
-    window.location.reload();
+    window.location.href = "Login.html"
 }
 
-function successHandler() {
+function getAllUser() {
     $.ajax({
         type: "GET",
-        url: "/register",
+        url: "http://localhost:8080/all-users",
         success: function (data) {
-            let content =
-                `<tr>
-                        <td>First Name</td>
-                        <td>Last Name</td>
-                        <td>Birth Date</td>
-                        <td>Email</td>
-                        <td>Phone</td>
-                        <td>Account</td>
-                        <td>Password</td>
-                        <td>Status</td>
-                        <td>Image</td>
-                        <td>Edit</td>
-                        <td>Delete</td>
-                    </tr>`;
+            let content = "";
             if (data == null) {
-                document.getElementById("teacherList").innerHTML = content;
+                $('#info-user').empty();
             } else {
+                $('#info-user').empty();
                 for (let i = 0; i < data.length; i++) {
-                    content += getTeacher(data[i]);
+                    content+=userDetails(data[i]);;
                 }
-                document.getElementById("teacherList").innerHTML = content;
+                document.getElementById("info-user").innerHTML = content;
+                // $('#info-user').append(content);
+
             }
+            // var table1 = $("#datatable").DataTable();
         }
+
     })
 }
+function userDetails(user) {
+    return `<tr><td >${user.fullName}</td><td >${user.phoneNumber}</td><td >${user.email}</td><td >${user.roleSet[0].name}</td>` + `</tr>`;
+}
+
+function displayAllUser() {
+    event.preventDefault();
+    getAllUser();
+    document.getElementById("form-create-object-card").hidden = true;
+    document.getElementById("form-register-card").hidden = true;
+    document.getElementById("chart-mark").hidden = true;
+    document.getElementById("all-user").hidden = false;
+
+}
+
+
 
 function displayFormCreateUser() {
     event.preventDefault();
     // document.getElementById("form-register").reset()
+    document.getElementById("chart-mark").hidden = true;
+    document.getElementById("form-create-object-card").hidden = true;
+    document.getElementById("all-user").hidden = true;
     document.getElementById("form-register-card").hidden = false;
     document.getElementById("form-button-submit").onclick = function () {
         addNewUser();
     }
 }
+function displayChart() {
+    event.preventDefault();
+    showChart();
+    document.getElementById("form-create-object-card").hidden = true;
+    document.getElementById("all-user").hidden = true;
+    document.getElementById("form-register-card").hidden = true;
+    document.getElementById("chart-mark").hidden = false;
+
+}
     function displayFormCreateCourse() {
         event.preventDefault();
-        // document.getElementById("form-register").reset()
+        // document.getElementById("form-register").reset()'
+        document.getElementById("chart-mark").hidden = true;
+        document.getElementById("form-register-card").hidden = true;
+        document.getElementById("all-user").hidden = true;
         document.getElementById("form-create-object-card").hidden = false;
         document.getElementById("form-button-submit-course").onclick = function () {
             addNewCource();
@@ -186,21 +223,7 @@ function displayFormCreateUser() {
             });
         }
 
-    document.addEventListener("DOMContentLoaded", () => {
-    $.ajax({
-    type:"GET",
-    url :"http://localhost:8080/mark/findAll",
-    success:function (data){
-        console.log(data)
-        for (let i = 0; i < data.length; i++) {
-            console.log(data[i].full_name)
-            chartDataName.push(data[i].full_name)
-            chartMark.push(data[i].tutorial)
-        };
-}
-});
 
-    })
 
 
 
