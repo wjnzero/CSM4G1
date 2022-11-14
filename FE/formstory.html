@@ -17,13 +17,30 @@
             <td>Content:</td>
             <td><input type="text" id="content" placeholder="content"></td>
         </tr>
-
+        <tr>
+            <td>Teacher:</td>
+            <td>
+                <select id="teacher">
+                    <option value="2">Nam</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>ClassRoom:</td>
+            <td>
+                <select id="classroom">
+                    <option value="1">5C</option>
+                    <option value="2">6C</option>
+                </select>
+            </td>
+        </tr>
         <tr>
             <td></td>
             <td><input type="submit" value="Add" onclick="addNewStory()"></td>
         </tr>
     </table>
 </form>
+<input type="submit" value="Back" onclick="backHome()">
 <script src="js/addStory.js"></script>
 </body>
 </html>
