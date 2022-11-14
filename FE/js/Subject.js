@@ -7,9 +7,8 @@ function successHandler() {
         success: function (data) {
             let content =
                 `<tr>
+   
                         <td>Name</td>
-<!--                        <td>Edit</td>-->
-<!--                        <td>Delete</td>-->
                     </tr>`;
                 for (let i = 0; i < data.length; i++) {
                     content += getSubject(data[i]);
