@@ -20,6 +20,7 @@ function Login() {
         success: function (data) {
             localStorage.setItem("token", data.accessToken);
             localStorage.setItem("role",data.roles[0].authority);
+            localStorage.setItem("id",data.id);
 
             if (data.roles[0].authority == "ROLE_ADMIN"){
                 location.href = "Admin.html"

@@ -8,6 +8,7 @@ import com.management.cgmanagement.model.entity.Tuition;
 import com.management.cgmanagement.model.entity.Tuition;
 import com.management.cgmanagement.model.entity.User;
 import com.management.cgmanagement.service.course.CourseService;
+import com.management.cgmanagement.service.mark.MarkService;
 import com.management.cgmanagement.service.tuition.TuitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,16 +26,17 @@ import java.util.Optional;
 public class TuitionController {
     @Autowired
     private TuitionService tuitionService;
-@Autowired
+    @Autowired
     private CourseService courseService;
+    @Autowired
+    private MarkService markService;
 
-    @GetMapping
-    public ResponseEntity<Iterable<ITuition>> findAllTuition(){
+    @GetMapping("/findtuition")
+    public ResponseEntity<Iterable<ITuition>> findAllTuition() {
         Iterable<ITuition> tuitions = null;
         try {
             tuitions = tuitionService.getTuitionNative();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 //        if (courses.isEmpty()) {
@@ -42,17 +44,27 @@ public class TuitionController {
 //        }
         return new ResponseEntity<>(tuitions, HttpStatus.OK);
     }
+
+    @GetMapping("/findMark")
+    public ResponseEntity<Iterable<IMark>> findAllMark() {
+        Iterable<IMark> marks = markService.getMarkNative();
+//        if (courses.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+        return new ResponseEntity<>(marks, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Tuition> findById(@PathVariable Long id){
-        Optional<Tuition> tuitions =tuitionService.findById(id);
-        if (!tuitions.isPresent()){
-            return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Tuition> findById(@PathVariable Long id) {
+        Optional<Tuition> tuitions = tuitionService.findById(id);
+        if (!tuitions.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(tuitions.get(),HttpStatus.OK);
+        return new ResponseEntity<>(tuitions.get(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Tuition> save(@RequestBody Tuition tuition){
+    public ResponseEntity<Tuition> save(@RequestBody Tuition tuition) {
         Tuition temp = new Tuition();
         temp.setId(tuition.getId());
 
@@ -67,27 +79,29 @@ public class TuitionController {
 
         return new ResponseEntity<>(tuitionService.save(temp), HttpStatus.CREATED);
     }
+
     @PutMapping("edit/{id}")
-    public ResponseEntity<Tuition> updateTuition(@PathVariable Long id,@RequestBody Tuition tuition){
+    public ResponseEntity<Tuition> updateTuition(@PathVariable Long id, @RequestBody Tuition tuition) {
         Optional<Tuition> tuitionOptional = tuitionService.findById(id);
         if (!tuitionOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         tuition.setId(tuitionOptional.get().getId());
-        return new ResponseEntity<>(tuitionService.save(tuition),HttpStatus.OK);
+        return new ResponseEntity<>(tuitionService.save(tuition), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Tuition> deleteTuition(@PathVariable Long id){
+    public ResponseEntity<Tuition> deleteTuition(@PathVariable Long id) {
         Optional<Tuition> tuitionOptional = tuitionService.findById(id);
-        if (!tuitionOptional.isPresent()){
+        if (!tuitionOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         tuitionService.remove(id);
-        return new ResponseEntity<>(tuitionOptional.get(),HttpStatus.OK);
+        return new ResponseEntity<>(tuitionOptional.get(), HttpStatus.OK);
     }
+
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
