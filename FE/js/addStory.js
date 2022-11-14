@@ -1,13 +1,20 @@
-
+let token = localStorage.getItem("token");
 function addNewStory(){
     let content =$('#content').val();
+    let teacher=$('#teacher').val()
+    // let classRoom=$('#classroom').val()
     let newStories ={
-        content: content
+        content: content,
+        // classRoom:classRoom,
+        user:localStorage.getItem(teacher)
     };
     $.ajax({
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
+        },
+        BeforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         type: "POST",
         data: JSON.stringify(newStories),
@@ -15,7 +22,9 @@ function addNewStory(){
         success:tabStory
 
     });
-
+}
+function  backHome(){
+    window.location.href="http://localhost:63342/CGmanagement/FE/teacher.html"
 }
 function tabStory(){
     let content="Add Success"
