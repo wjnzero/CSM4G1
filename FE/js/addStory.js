@@ -24,7 +24,7 @@ function addNewStory(){
     });
 }
 function  backHome(){
-    window.location.href="http://localhost:63342/CGmanagement/FE/teacher.html"
+    window.location.href="teacher.html"
 }
 function tabStory(){
     let content="Add Success"

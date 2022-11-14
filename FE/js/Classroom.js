@@ -38,7 +38,7 @@ function  successDisplayClass(){
     });
 }
 function addStory(){
-    window.location.href="http://localhost:63342/CGmanagement/FE/formstory.html?_ijt=jsrrqd8qud2g4rkms1r7ck28d0"
+    window.location.href="formstory.html"
 }
 function  getClassRoom(classroom){
     return `<tr><td >${classroom.nameClass}</td><td >${classroom.numberStudent}</td>`+
